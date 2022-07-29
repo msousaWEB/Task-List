@@ -69,13 +69,12 @@
         this.form.title = '';
         this.form.description = '';
       },
-      makeToast(append = false) {
+      makeToast() {
         const vm = new Vue();
         vm.$bvToast.toast(`Tarefa salva com sucesso`, {
           title: 'Sucesso',
           autoHideDelay: 4000,
           variant: 'success',
-          appendToast: append
         })
       }
     }
