@@ -44,5 +44,17 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "main": "babel.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/msousaWEB/Task-List-VueJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/msousaWEB/Task-List-VueJS/issues"
+  },
+  "homepage": "https://github.com/msousaWEB/Task-List-VueJS#readme",
+  "description": ""
 }

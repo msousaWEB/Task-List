@@ -8,7 +8,7 @@
             content.
           </b-card-text>
 
-          <b-button variant="info" pill style="margin-right:4px">Editar</b-button>
+          <b-button variant="primary" pill style="margin-right:4px">Editar</b-button>
           <b-button variant="danger" pill >Excluir</b-button>
 
         </b-card>
