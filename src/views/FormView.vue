@@ -52,14 +52,39 @@
     data() {
       return {
         form: {
+          id: '',
           title: '',
           description: '',
         },
       }
     },
+    created() {
+      this.form.id = this.$route.params.id
+      if(this.form.id){
+        db.collection('tasks').doc(this.form.id).get().then(snapshot => {
+          const task = snapshot.data()
+          this.form.title = task.title
+          this.form.description = task.description
+        })
+      }
+    },
     methods: {
       saveTask() {
+        if(this.form.id){
+          this.updateTask()
+        } else {
+          this.newTask()
+        }
+      },
+      newTask(){
         db.collection('tasks').add(this.form).then(() => {
+          this.clearForm();
+          this.makeToast();
+          this.$router.push({name:'list'});
+        })
+      },
+      updateTask(){
+        db.collection('tasks').doc(this.form.id).set(this.form).then(() => {
           this.clearForm();
           this.makeToast();
           this.$router.push({name:'list'});
@@ -71,7 +96,7 @@
       },
       makeToast() {
         const vm = new Vue();
-        vm.$bvToast.toast(`Tarefa salva com sucesso`, {
+        vm.$bvToast.toast(`Tarefa salva com sucesso!`, {
           title: 'Sucesso',
           autoHideDelay: 4000,
           variant: 'success',
