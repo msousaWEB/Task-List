@@ -1,15 +1,14 @@
 <template>
   <div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" v-for="task in tasks" :key="task.id">
       <div class="col-6 mt-4">
-        <b-card title="Card title">
+        <b-card :title="task.title">
           <b-card-text>
-            Some quick example text to build on the <em>card title</em> and make up the bulk of the card's
-            content.
+            {{task.description}}
           </b-card-text>
 
-          <b-button variant="primary" pill style="margin-right:4px">Editar</b-button>
-          <b-button variant="danger" pill >Excluir</b-button>
+          <b-button variant="primary" pill class="mr-2">Editar</b-button>
+          <b-button variant="danger" pill class="mr-2">Excluir</b-button>
 
         </b-card>
       </div>
@@ -18,7 +17,31 @@
 </template>
 
 <script>
+import {db} from '../firebaseDB'
 export default {
-  name: 'ListView'
+  name: 'ListView',
+  data() {
+    return {
+      tasks: []
+    }
+  },
+  created(){
+    this.getTasks();
+  },
+  methods: {
+    getTasks() {
+      this.tasks = [];
+      db.collection('tasks').get().then(snapshot => {
+        snapshot.forEach(doc => {
+          let objTask = {};
+          objTask = doc.data();
+          objTask.id = doc.id;
+          this.tasks.push(objTask);
+        });
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+  }
 }
 </script>

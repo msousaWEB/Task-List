@@ -35,8 +35,8 @@
         </b-col>
 
         <b-col class="col-6 offset-sm-3 mt-3">
-          <b-button @click="saveTask()" type="button" pill variant="success" style="margin-right:4px">Salvar</b-button>
-          <b-button type="reset" pill variant="secondary">Limpar</b-button>
+          <b-button @click="saveTask()" type="button" pill variant="success" class="mr-2">Salvar</b-button>
+          <b-button type="reset" pill variant="secondary" class="mr-2">Limpar</b-button>
         </b-col>
       </b-row>
     </b-form>
